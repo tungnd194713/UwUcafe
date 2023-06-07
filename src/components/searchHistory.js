@@ -1,11 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRecycle } from '@fortawesome/free-solid-svg-icons'
-import { useNavigate } from 'react-router-dom';
 
 function SearchHistory() {
 
-    const navigate = useNavigate()
     const [history, setHistory] = useState([]);
 
     useEffect(() => {
@@ -17,18 +15,19 @@ function SearchHistory() {
     function delteHistory(h) {
         const newH = history.filter(his => his !== h)
         console.log(newH);
-        if (newH.length === 0) localStorage.removeItem('searchHistory')
-        else {
+        if (newH.length === 0) {
+            localStorage.removeItem('searchHistory')
+            setHistory([]);
+        } else {
             let newHstr = '';
             for (let i = 0; i < newH.length; i++) {
                 console.log(newH[i]);
                 if (i === newH.length - 1) newHstr = newHstr + newH[i]
                 else newHstr = newHstr + newH[i] + '+'
-                console.log('loop ' + i + 'newHstr' + newHstr)
             }
+            setHistory(newH);
             localStorage.setItem('searchHistory', newHstr)
         }
-        navigate(0)
     }
     function reuseHistory(h) {
         const search = document.getElementById('searchBar')
