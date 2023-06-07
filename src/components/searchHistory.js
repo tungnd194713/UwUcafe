@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRecycle } from '@fortawesome/free-solid-svg-icons'
 
-function SearchHistory() {
+function SearchHistory({ setName }) {
 
     const [history, setHistory] = useState([]);
 
@@ -29,10 +29,13 @@ function SearchHistory() {
             localStorage.setItem('searchHistory', newHstr)
         }
     }
+
     function reuseHistory(h) {
         const search = document.getElementById('searchBar')
         search.value = h
+        setName(h)
     }
+
     if (history.length === 0) return <></>
     else return (
         <div className='history-container'>
@@ -42,7 +45,7 @@ function SearchHistory() {
                         <div className="history-line" key={history.indexOf(h)}>
                             <FontAwesomeIcon icon={faRecycle} className='history-reuse' onClick={() => reuseHistory(h)} />
                             <div className="history-text">{h}</div>
-                            <button onClick={() => delteHistory(h)} className='history-delete'>Delete</button>
+                            <button onClick={() => delteHistory(h)} className='history-delete'>消去</button>
                         </div>
                     )
                 })

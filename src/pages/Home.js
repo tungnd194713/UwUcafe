@@ -1,19 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import apiClient from '../APIclient'
 
 import History from '../components/searchHistory'
 import RestaurantCard from '../components/RestaurantCard'
-import Star from '../components/showStar';
+import PopupStar from '../components/PopupStar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
+// const district_list_key = [
+//     'quan_Ba_Dinh',
+//     'quan_Hoan_Kiem',
+//     'quan_Tay_Ho',
+//     'quan_Long_Bien',
+//     'quan_Cau_Giay'
+// ]
 const district_list = [
-    'quan_Ba_Dinh',
-    'quan_Hoan_Kiem',
-    'quan_Tay_Ho',
-    'quan_Long_Bien',
-    'quan_Cau_Giay'
+    'バーディン地区', 'ホアンキエム地区', 'タイホー地区', 'ロンビエン地区', 'カウザイ地区', 'ドングダ地区', 'ハイバチュン地区', 'ホアングマイ地区', 'タンスアン地区', 'ハドン地区'
 ]
 
 function Home() {
@@ -27,6 +30,7 @@ function Home() {
         setToggleState(index);
     };
 
+    // fetch data
     const [restaurants, setRestaurants] = useState([]);
     const [total, setTotal] = useState(0);
 
@@ -42,7 +46,8 @@ function Home() {
     useEffect(() => {
         getRestaurants();
     }, [])
-    //onSubmit handle
+
+    //form handler
     const [values, setValues] = useState({
         name: '',
         district: '',
@@ -50,6 +55,7 @@ function Home() {
         star_rating: '',
         is_crowded: null
     })
+
     async function SearchRes(values) {
         //fetch newdata
         try {
@@ -132,8 +138,26 @@ function Home() {
         })
     }
 
+    //click out to hide history
+    const historyRef = useRef();
+    useEffect(() => {
+        let handler = (e) => {
+            if (!historyRef.current.contains(e.target)) {
+                setShowHistory(false);
+            }
+        }
+        document.addEventListener("mousedown", handler)
 
+        return () => {
+            document.removeEventListener("mousedown", handler)
+        }
+    })
 
+    //set name callback in history component 
+    function setName(name) {
+        values.name = name;
+        setValues({ ...values })
+    }
     return (
         <>
             <div className="homepage-container">
@@ -142,16 +166,16 @@ function Home() {
                         <div className="search-text">{t('search_text')}</div>
                         <button className="option-btn" onClick={() => setOpen(!open)}>{t('option_btn')}</button>
                     </div>
-                    <div className="search-right">
+                    <div className="search-right" ref={historyRef}>
                         <form onSubmit={onSubmit} autoComplete='off'>
-                            <input type='textinput' name='name' value={values.name} onChange={onChangeText} className='search-bar' onClick={() => setShowHistory(!showHistory)} id='searchBar' />
+                            <input type='textinput' name='name' value={values.name} onChange={onChangeText} className='search-bar' onClick={() => setShowHistory(true)} id='searchBar' />
                             <button type='submit' className='search-btn'>
                                 <FontAwesomeIcon icon={faSearch} className='search-btn-icon' />
                             </button>
-                            {/* the filter popup */}
 
+                            {/* the filter popup */}
                             <div className={open ? 'option-form' : 'tab-content-inactive'}>
-                                <div className="option-popup-header">Filter</div>
+                                <div className="option-popup-header">フィルター</div>
                                 <div className='popup-inside-container'>
                                     <div>
                                         <div className="tab-container">
@@ -166,9 +190,9 @@ function Home() {
                                                     district_list.map((dis, index) => {
                                                         return (
                                                             <div className="district-checkbox-home" key={index}>
-                                                                <label class="myLabel" htmlFor={'district-home' + index}>{dis}
-                                                                    <input type="checkbox" value={index + 1} onChange={onChangeDistrict} name='district' id={'district-home' + index} class="myCheckbox"/>
-                                                                    <span class="checkmark"></span>
+                                                                <label className="myLabel" htmlFor={'district-home' + index}>{dis}
+                                                                    <input type="checkbox" value={index + 1} onChange={onChangeDistrict} name='district' id={'district-home' + index} className="myCheckbox" />
+                                                                    <span className="checkmark"></span>
                                                                 </label>
                                                             </div>
                                                         )
@@ -176,67 +200,67 @@ function Home() {
                                                 }
                                             </div>
                                             <div className={toggleState === 2 ? "tab-content" : "tab-content-inactive"}>
-                                                <label class="myLabel" htmlFor="star5">
-                                                    <Star className='show-star-home' star={5} />
-                                                    <input type="checkbox" value='5' onChange={onChangeRating} name='star-rating' id="star5" class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor="star5">
+                                                    <PopupStar className='show-star-home' star={5} />
+                                                    <input type="checkbox" value='5' onChange={onChangeRating} name='star-rating' id="star5" className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor="star4">
-                                                    <Star className='show-star-home' star={4} />
-                                                    <input type="checkbox" value='4' onChange={onChangeRating} name='star-rating' id="star4" class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor="star4">
+                                                    <PopupStar className='show-star-home' star={4} />
+                                                    <input type="checkbox" value='4' onChange={onChangeRating} name='star-rating' id="star4" className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor="star3">
-                                                    <Star className='show-star-home' star={3} />
-                                                    <input type="checkbox" value='3' onChange={onChangeRating} name='star-rating' id="star3" class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor="star3">
+                                                    <PopupStar className='show-star-home' star={3} />
+                                                    <input type="checkbox" value='3' onChange={onChangeRating} name='star-rating' id="star3" className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor="star2">
-                                                    <Star className='show-star-home' star={2} />
-                                                    <input type="checkbox" value='2' onChange={onChangeRating} name='star-rating' id="star2" class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor="star2">
+                                                    <PopupStar className='show-star-home' star={2} />
+                                                    <input type="checkbox" value='2' onChange={onChangeRating} name='star-rating' id="star2" className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor="star1">
-                                                    <Star className='show-star-home' star={1} />
-                                                    <input type="checkbox" value='1' onChange={onChangeRating} name='star-rating' id="star1" class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor="star1">
+                                                    <PopupStar className='show-star-home' star={1} />
+                                                    <input type="checkbox" value='1' onChange={onChangeRating} name='star-rating' id="star1" className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div className={toggleState === 3 ? "tab-content" : "tab-content-inactive"}>
-                                                <label class="myLabel" htmlFor='service1'>エアコン
-                                                    <input type="checkbox" value="1" onChange={onChangeService} name='service' id='service1' class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor='service1'>エアコン
+                                                    <input type="checkbox" value="1" onChange={onChangeService} name='service' id='service1' className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor='service2'>喫煙室
-                                                    <input type="checkbox" value="2" onChange={onChangeService} name='service' id='service2' class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor='service2'>喫煙室
+                                                    <input type="checkbox" value="2" onChange={onChangeService} name='service' id='service2' className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor='service3'>駐車場
-                                                    <input type="checkbox" value="3" onChange={onChangeService} name='service' id='service3' class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor='service3'>駐車場
+                                                    <input type="checkbox" value="3" onChange={onChangeService} name='service' id='service3' className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor='service4'>配達
-                                                    <input type="checkbox" value="4" onChange={onChangeService} name='service' id='service4' class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor='service4'>配達
+                                                    <input type="checkbox" value="4" onChange={onChangeService} name='service' id='service4' className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div className={toggleState === 4 ? "tab-content" : "tab-content-inactive"}>
-                                                <label class="myLabel" htmlFor='is_crowded'>少ない
-                                                    <input type="checkbox" value="1" onChange={onChangeCrowded} name='status' id='is_crowded' class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor='is_crowded'>少ない
+                                                    <input type="radio" value="1" onChange={onChangeCrowded} name='status' id='is_crowded' className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
-                                                <label class="myLabel" htmlFor='not_crowded'>多い
-                                                    <input type="checkbox" value="2" onChange={onChangeCrowded} name='status' id='not_crowded' class="myCheckbox"/>
-                                                    <span class="checkmark"></span>
+                                                <label className="myLabel" htmlFor='not_crowded'>多い
+                                                    <input type="radio" value="2" onChange={onChangeCrowded} name='status' id='not_crowded' className="myCheckbox" />
+                                                    <span className="checkmark"></span>
                                                 </label>
                                             </div>
 
                                         </div>
                                         <div className="button-container">
                                             <button style={{ border: 'none', background: 'none', cursor: 'pointer' }} type='button' onClick={removeOption}>
-                                                <FontAwesomeIcon icon={faRotateRight} rotation={270} style={{ height: '25px', color: 'blue' }} />
+                                                <FontAwesomeIcon icon={faRotateRight} rotation={270} style={{ height: '30px', color: '#7b7aaf' }} />
                                             </button>
-                                            <button className='option-popup-btn' onClick={() => setOpen(false)} type='button'>Cancel</button>
+                                            <button className='option-popup-btn' onClick={() => setOpen(false)} type='button'>キャンセル</button>
                                             <button type='submit' className='option-popup-btn'>OK</button>
                                         </div>
                                     </div>
@@ -244,7 +268,7 @@ function Home() {
                             </div>
 
                         </form>
-                        {showHistory && <History />}
+                        {showHistory && <History setName={setName} />}
                     </div>
                 </div >
                 {/* total result and show the result */}

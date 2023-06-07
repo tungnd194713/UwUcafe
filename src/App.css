@@ -1,10 +1,10 @@
 :root {
-    --mild_yellow: rgb(229, 214, 3);
-    --light_green: rgb(122, 253, 122);
-    --light_blue: rgb(0, 187, 255);
-    --green_blue: rgb(0, 255, 145);
-    --light_pink: rgb(251, 255, 206);
-    --light_pink_blur: rgba(251, 255, 206, 0.7);
+    --mild_yellow: #d1d184;
+    --light_green: #dafab0;
+    --light_blue: rgb(148, 185, 255);
+    --green_blue: rgb(205, 255, 216);
+    --light_pink: #fffaed;
+    --light_pink_blur: #fffaedae;
 }
 
 .header {
@@ -14,6 +14,7 @@
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    border-bottom: solid 2px black ;
 }
 
 .login-btn {
@@ -27,6 +28,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border: solid 2px black ;
 }
 
 .total-result {
@@ -122,7 +124,7 @@
     text-align: end;
 }
 .restaurant-card {
-    background-image: linear-gradient(to right,var(--green_blue), var(--light_blue));
+    background-image: linear-gradient(90deg,var(--green_blue), var(--light_blue));
     width: 700px;
     border-radius: 15px;
     margin-bottom: 10px;
@@ -172,6 +174,7 @@
     padding-right: 20px;
     font-size: 20px;
     text-align: end;
+    border-bottom: solid 2px black ;
 }
 .popup-inside-container {
     height: 400px;
@@ -182,7 +185,7 @@
 .tab-container {
     border: 2px solid black;
     width: 600px;
-    height: fit-content;
+    height: 300px;
     overflow: hidden;
     display: grid;
     grid-template-columns: 20% 80%;
@@ -231,8 +234,8 @@
     border-radius: 10px;
     font-size: 20px;
     min-width: 120px;
-    background-color: green;
-    color: red;
+    background-color: #7cb58a;
+    color: #ff3131;
     padding: 5px;
     border: none;
     cursor: pointer;

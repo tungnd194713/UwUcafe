@@ -11,7 +11,7 @@ function Header() {
         < >
             <div className='header'>
                 {user && <UserInfo />}
-                {!user && <Link to='/login' className='login-btn'><div>Login</div></Link>}
+                {!user && <Link to='/login' className='login-btn'><div>ログイン</div></Link>}
             </div>
         </>
     )
