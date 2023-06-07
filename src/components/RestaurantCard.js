@@ -19,8 +19,8 @@ function RestaurantCard({ restaurant }) {
         <div className="restaurant-card">
             <img src={logo ? logo : defaulImage} alt="coffe image" className='res-img-home' />
             <div>
-                <div>{`Name: ${name}`}</div>
-                <div>{`Address: number ${splited_addr.number} of ${splited_addr.street} street`}</div>
+                <div>{`${name}`}</div>
+                <div>{`${splited_addr.street} 通り${splited_addr.number}番地`}</div>
                 <Star className='show-star-home' star={total_star} />
             </div>
         </div>

@@ -119,6 +119,17 @@ function Home() {
     }
 
     function removeOption() {
+        setValues({
+            name: '',
+            district: '',
+            service: '',
+            star_rating: '',
+            is_crowded: null
+        })
+        const checkboxs = document.querySelectorAll('.myCheckbox')
+        checkboxs.forEach(checkbox => {
+            checkbox.checked = false
+        })
     }
 
 
@@ -145,38 +156,79 @@ function Home() {
                                     <div>
                                         <div className="tab-container">
                                             <div>
-                                                <div className={toggleState === 1 ? "tab" : "tab-inactive"} onClick={() => toggleTab(1)}>Dia diem</div>
-                                                <div className={toggleState === 2 ? "tab" : "tab-inactive"} onClick={() => toggleTab(2)}>Danh gia</div>
-                                                <div className={toggleState === 3 ? "tab" : "tab-inactive"} onClick={() => toggleTab(3)}>Dich vu</div>
-                                                <div className={toggleState === 4 ? "tab" : "tab-inactive"} onClick={() => toggleTab(4)}>Luu luong khach</div>
+                                                <div className={toggleState === 1 ? "tab" : "tab-inactive"} onClick={() => toggleTab(1)}>場所</div>
+                                                <div className={toggleState === 2 ? "tab" : "tab-inactive"} onClick={() => toggleTab(2)}>評価</div>
+                                                <div className={toggleState === 3 ? "tab" : "tab-inactive"} onClick={() => toggleTab(3)}>サビース</div>
+                                                <div className={toggleState === 4 ? "tab" : "tab-inactive"} onClick={() => toggleTab(4)}>混雑状況</div>
                                             </div>
                                             <div className={toggleState === 1 ? "tab-content" : "tab-content-inactive"}>
                                                 {
-                                                    district_list.map((dis) => {
+                                                    district_list.map((dis, index) => {
                                                         return (
-                                                            <div className="district-checkbox-home" key={district_list.indexOf(dis)}>
-                                                                <input type="checkbox" value={district_list.indexOf(dis) + 1} onChange={onChangeDistrict} name='district' id='district-home' /><label htmlFor="district-home">{dis}</label>
+                                                            <div className="district-checkbox-home" key={index}>
+                                                                <label class="myLabel" htmlFor={'district-home' + index}>{dis}
+                                                                    <input type="checkbox" value={index + 1} onChange={onChangeDistrict} name='district' id={'district-home' + index} class="myCheckbox"/>
+                                                                    <span class="checkmark"></span>
+                                                                </label>
                                                             </div>
                                                         )
                                                     })
                                                 }
                                             </div>
                                             <div className={toggleState === 2 ? "tab-content" : "tab-content-inactive"}>
-                                                <input type="checkbox" value='5' onChange={onChangeRating} name='star-rating' /><Star className='show-star-home' star={5} />
-                                                <input type="checkbox" value='4' onChange={onChangeRating} name='star-rating' /><Star className='show-star-home' star={4} />
-                                                <input type="checkbox" value='3' onChange={onChangeRating} name='star-rating' /><Star className='show-star-home' star={3} />
-                                                <input type="checkbox" value='2' onChange={onChangeRating} name='star-rating' /><Star className='show-star-home' star={2} />
-                                                <input type="checkbox" value='1' onChange={onChangeRating} name='star-rating' /><Star className='show-star-home' star={1} />
+                                                <label class="myLabel" htmlFor="star5">
+                                                    <Star className='show-star-home' star={5} />
+                                                    <input type="checkbox" value='5' onChange={onChangeRating} name='star-rating' id="star5" class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor="star4">
+                                                    <Star className='show-star-home' star={4} />
+                                                    <input type="checkbox" value='4' onChange={onChangeRating} name='star-rating' id="star4" class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor="star3">
+                                                    <Star className='show-star-home' star={3} />
+                                                    <input type="checkbox" value='3' onChange={onChangeRating} name='star-rating' id="star3" class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor="star2">
+                                                    <Star className='show-star-home' star={2} />
+                                                    <input type="checkbox" value='2' onChange={onChangeRating} name='star-rating' id="star2" class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor="star1">
+                                                    <Star className='show-star-home' star={1} />
+                                                    <input type="checkbox" value='1' onChange={onChangeRating} name='star-rating' id="star1" class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
                                             </div>
                                             <div className={toggleState === 3 ? "tab-content" : "tab-content-inactive"}>
-                                                <input type="checkbox" value='1' onChange={onChangeService} name='service' /><label>Dieu hoa</label>
-                                                <input type="checkbox" value='2' onChange={onChangeService} name='service' /><label>Toilet</label>
-                                                <input type="checkbox" value='3' onChange={onChangeService} name='service' /><label>Phong hut thuoc</label>
-                                                <input type="checkbox" value='4' onChange={onChangeService} name='service' /><label>Bai do xe</label>
+                                                <label class="myLabel" htmlFor='service1'>エアコン
+                                                    <input type="checkbox" value="1" onChange={onChangeService} name='service' id='service1' class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor='service2'>喫煙室
+                                                    <input type="checkbox" value="2" onChange={onChangeService} name='service' id='service2' class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor='service3'>駐車場
+                                                    <input type="checkbox" value="3" onChange={onChangeService} name='service' id='service3' class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor='service4'>配達
+                                                    <input type="checkbox" value="4" onChange={onChangeService} name='service' id='service4' class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
                                             </div>
                                             <div className={toggleState === 4 ? "tab-content" : "tab-content-inactive"}>
-                                                <input type="radio" value='1' onChange={onChangeCrowded} name='is_crowded' /><label>Vang khach</label>
-                                                <input type="radio" value='2' onChange={onChangeCrowded} name='is_crowded' /><label>Dong khach</label>
+                                                <label class="myLabel" htmlFor='is_crowded'>少ない
+                                                    <input type="checkbox" value="1" onChange={onChangeCrowded} name='status' id='is_crowded' class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                <label class="myLabel" htmlFor='not_crowded'>多い
+                                                    <input type="checkbox" value="2" onChange={onChangeCrowded} name='status' id='not_crowded' class="myCheckbox"/>
+                                                    <span class="checkmark"></span>
+                                                </label>
                                             </div>
 
                                         </div>
@@ -196,7 +248,7 @@ function Home() {
                     </div>
                 </div >
                 {/* total result and show the result */}
-                < div className="total-result" > {`There are total ${total} result`
+                < div className="total-result" > {`${total} 件の結果を表示しています...`
                 }</div >
                 <div className="result-container">
                     {
