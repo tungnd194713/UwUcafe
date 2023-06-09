@@ -7,9 +7,7 @@ import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 import LanguageDetector from 'i18next-browser-languagedetector';
 import HttpApi from 'i18next-http-backend';
-
-import { QueryClient, QueryClientProvider } from "react-query";
-const queryClient = new QueryClient();
+import { AuthProvider } from './context/auth'
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -33,9 +31,9 @@ i18n
 
 ReactDOM.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
+    <AuthProvider>
       <App />
-    </QueryClientProvider>
+    </AuthProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

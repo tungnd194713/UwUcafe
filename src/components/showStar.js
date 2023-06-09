@@ -46,6 +46,8 @@ function showStar({ star }) {
                 <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
                 <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
             </>);
+        default:
+            return <></>
     }
 
 }

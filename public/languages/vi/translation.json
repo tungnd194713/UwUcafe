@@ -1,5 +1,22 @@
 {
-    "welcome_message": "Chào mừng đến với app",
-    "search_text": "検索",
-    "option_btn": "フィルター"
+    "search_text": "Tìm kiếm",
+    "option_btn": "Tùy chọn",
+    "login_btn": "Đăng nhập",
+    "total_text": "Hiển thị {{total}} kết quả",
+    "address_text": "Số {{addr_num}} Đường {{addr_street}}",
+    "filter": "Bộ lọc",
+    "delete":"Xóa",
+    "location": "Địa điểm",
+    "rating": "Đánh giá",
+    "service": "Dịch vụ",
+    "is_crowded": "Lưu lượng khách",
+    "HBT_dis": "Q. Hai Bà Trưng",
+    "aircon": "Điều hòa",
+    "smoking_room": "Phòng hút thuốc",
+    "parking_lot": "Bãi đỗ xe",
+    "toilet": "Toilet",
+    "cancel": "Hủy",
+    "confirm_filter": "Xác nhận",
+    "is_crowded_true": "Đông khách",
+    "is_crowded_false": "Vắng khách"
 }
