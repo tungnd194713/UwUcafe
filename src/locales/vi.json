@@ -1,0 +1,8 @@
+{
+    "login": {
+        "role": {
+            "store": "Đăng nhập với vai trò chủ cửa hàng",
+            "user": "Đăng nhập với vai trò người dùng"
+        }
+    }
+}

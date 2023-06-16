@@ -5,7 +5,7 @@ import UserInfo from './UserInfo'
 
 function Header() {
 
-    const user = false;
+    const user = localStorage.getItem('user');
 
     return (
         < >
