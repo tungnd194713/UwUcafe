@@ -14,15 +14,15 @@ const InputField = ({ label, type, value, onChange }) => {
 };
 
 const RadioField = ({ label, value, checked, onChange }) => {
-    return (
-      <div>
-        <label>
-          <input type="radio" value={value} checked={checked} onChange={onChange} />
-          {label}
-        </label>
-      </div>
-    );
-  };
+  return (
+    <div>
+      <label>
+        <input type="radio" value={value} checked={checked} onChange={onChange} />
+        {label}
+      </label>
+    </div>
+  );
+};
 
 const CheckboxField = ({ label, checked, onChange }) => {
   return (
@@ -45,7 +45,7 @@ const Login = () => {
 
   useEffect(() => {
     if (localStorage.getItem('user')) {
-        navigate('/');
+      navigate('/');
     }
   })
 
@@ -69,16 +69,16 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      const {user, access_token} = await AuthApi.login({
+      const { user, access_token } = await AuthApi.login({
         username,
         password,
         role,
       });
 
       // Handle successful login response
-    localStorage.setItem('user', JSON.stringify(user));
-    localStorage.setItem('access_token', access_token);
-    navigate('/');
+      localStorage.setItem('user', JSON.stringify(user));
+      localStorage.setItem('access_token', access_token);
+      navigate('/');
     } catch (error) {
       // Handle login error
       console.error('Login errorasa:', error.response);
