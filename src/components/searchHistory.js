@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRecycle } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'react-i18next';
 
 function SearchHistory({ setName }) {
+    const { t } = useTranslation()
 
     const [history, setHistory] = useState([]);
 
@@ -45,7 +47,7 @@ function SearchHistory({ setName }) {
                         <div className="history-line" key={history.indexOf(h)}>
                             <FontAwesomeIcon icon={faRecycle} className='history-reuse' onClick={() => reuseHistory(h)} />
                             <div className="history-text">{h}</div>
-                            <button onClick={() => delteHistory(h)} className='history-delete'>消去</button>
+                            <button onClick={() => delteHistory(h)} className='history-delete'>{t('delete')}</button>
                         </div>
                     )
                 })

@@ -8,16 +8,13 @@ import PopupStar from '../components/PopupStar'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
-// const district_list_key = [
-//     'quan_Ba_Dinh',
-//     'quan_Hoan_Kiem',
-//     'quan_Tay_Ho',
-//     'quan_Long_Bien',
-//     'quan_Cau_Giay'
-// ]
 const district_list = [
-    'バーディン地区', 'ホアンキエム地区', 'タイホー地区', 'ロンビエン地区', 'カウザイ地区', 'ドングダ地区', 'ハイバチュン地区', 'ホアングマイ地区', 'タンスアン地区', 'ハドン地区'
+    'BaDinh_dis', 'HoanKiem_dis', 'TayHo_dis', 'LongBien_dis', 'CauGiay_dis'
+
 ]
+// const district_list_trans = [
+//     'バーディン地区', 'ホアンキエム地区', 'タイホー地区', 'ロンビエン地区', 'カウザイ地区', 'ドングダ地区', 'ハイバチュン地区', 'ホアングマイ地区', 'タンスアン地区', 'ハドン地区'
+// ]
 
 function Home() {
     const { t } = useTranslation();
@@ -175,22 +172,22 @@ function Home() {
 
                             {/* the filter popup */}
                             <div className={open ? 'option-form' : 'tab-content-inactive'}>
-                                <div className="option-popup-header">フィルター</div>
+                                <div className="option-popup-header">{t('filter')}</div>
                                 <div className='popup-inside-container'>
                                     <div>
                                         <div className="tab-container">
                                             <div>
-                                                <div className={toggleState === 1 ? "tab" : "tab-inactive"} onClick={() => toggleTab(1)}>場所</div>
-                                                <div className={toggleState === 2 ? "tab" : "tab-inactive"} onClick={() => toggleTab(2)}>評価</div>
-                                                <div className={toggleState === 3 ? "tab" : "tab-inactive"} onClick={() => toggleTab(3)}>サビース</div>
-                                                <div className={toggleState === 4 ? "tab" : "tab-inactive"} onClick={() => toggleTab(4)}>混雑状況</div>
+                                                <div className={toggleState === 1 ? "tab" : "tab-inactive"} onClick={() => toggleTab(1)}>{t('location')}</div>
+                                                <div className={toggleState === 2 ? "tab" : "tab-inactive"} onClick={() => toggleTab(2)}>{t('rating')}</div>
+                                                <div className={toggleState === 3 ? "tab" : "tab-inactive"} onClick={() => toggleTab(3)}>{t('service')}</div>
+                                                <div className={toggleState === 4 ? "tab" : "tab-inactive"} onClick={() => toggleTab(4)}>{t('is_crowded')}</div>
                                             </div>
                                             <div className={toggleState === 1 ? "tab-content" : "tab-content-inactive"}>
                                                 {
                                                     district_list.map((dis, index) => {
                                                         return (
                                                             <div className="district-checkbox-home" key={index}>
-                                                                <label className="myLabel" htmlFor={'district-home' + index}>{dis}
+                                                                <label className="myLabel" htmlFor={'district-home' + index}>{t(dis)}
                                                                     <input type="checkbox" value={index + 1} onChange={onChangeDistrict} name='district' id={'district-home' + index} className="myCheckbox" />
                                                                     <span className="checkmark"></span>
                                                                 </label>
@@ -227,29 +224,29 @@ function Home() {
                                                 </label>
                                             </div>
                                             <div className={toggleState === 3 ? "tab-content" : "tab-content-inactive"}>
-                                                <label className="myLabel" htmlFor='service1'>エアコン
+                                                <label className="myLabel" htmlFor='service1'>{t('aircon')}
                                                     <input type="checkbox" value="1" onChange={onChangeService} name='service' id='service1' className="myCheckbox" />
                                                     <span className="checkmark"></span>
                                                 </label>
-                                                <label className="myLabel" htmlFor='service2'>喫煙室
+                                                <label className="myLabel" htmlFor='service2'>{t('smoking_room')}
                                                     <input type="checkbox" value="2" onChange={onChangeService} name='service' id='service2' className="myCheckbox" />
                                                     <span className="checkmark"></span>
                                                 </label>
-                                                <label className="myLabel" htmlFor='service3'>駐車場
+                                                <label className="myLabel" htmlFor='service3'>{t('parking_lot')}
                                                     <input type="checkbox" value="3" onChange={onChangeService} name='service' id='service3' className="myCheckbox" />
                                                     <span className="checkmark"></span>
                                                 </label>
-                                                <label className="myLabel" htmlFor='service4'>配達
+                                                <label className="myLabel" htmlFor='service4'>{t('toilet')}
                                                     <input type="checkbox" value="4" onChange={onChangeService} name='service' id='service4' className="myCheckbox" />
                                                     <span className="checkmark"></span>
                                                 </label>
                                             </div>
                                             <div className={toggleState === 4 ? "tab-content" : "tab-content-inactive"}>
-                                                <label className="myLabel" htmlFor='is_crowded'>少ない
+                                                <label className="myLabel" htmlFor='is_crowded'>{t('is_crowded_false')}
                                                     <input type="radio" value="1" onChange={onChangeCrowded} name='status' id='is_crowded' className="myCheckbox" />
                                                     <span className="checkmark"></span>
                                                 </label>
-                                                <label className="myLabel" htmlFor='not_crowded'>多い
+                                                <label className="myLabel" htmlFor='not_crowded'>{t('is_crowded_true')}
                                                     <input type="radio" value="2" onChange={onChangeCrowded} name='status' id='not_crowded' className="myCheckbox" />
                                                     <span className="checkmark"></span>
                                                 </label>
@@ -260,8 +257,8 @@ function Home() {
                                             <button style={{ border: 'none', background: 'none', cursor: 'pointer' }} type='button' onClick={removeOption}>
                                                 <FontAwesomeIcon icon={faRotateRight} rotation={270} style={{ height: '30px', color: '#7b7aaf' }} />
                                             </button>
-                                            <button className='option-popup-btn' onClick={() => setOpen(false)} type='button'>キャンセル</button>
-                                            <button type='submit' className='option-popup-btn'>OK</button>
+                                            <button className='option-popup-btn' onClick={() => setOpen(false)} type='button'>{t('cancel')}</button>
+                                            <button type='submit' className='option-popup-btn'>{t('confirm_filter')}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -272,8 +269,7 @@ function Home() {
                     </div>
                 </div >
                 {/* total result and show the result */}
-                < div className="total-result" > {`${total} 件の結果を表示しています...`
-                }</div >
+                < div className="total-result" > {t('total_text', { total })}</div >
                 <div className="result-container">
                     {
                         restaurants.map((restaurant) => {
