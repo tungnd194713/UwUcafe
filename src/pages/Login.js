@@ -102,7 +102,7 @@ const Login = () => {
         <InputField label="Username" type="username" value={username} onChange={handleUsernameChange} />
         <InputField label="Password" type="password" value={password} onChange={handlePasswordChange} />
         <CheckboxField label="Remember Password" checked={rememberPassword} onChange={handleRememberPasswordChange} />
-        <a href="#" onClick={handleForgotPassword}>Forgot password?</a>
+        <Link to='/forgot_pass'>Forgot password</Link>
         <div>
           <button type="submit">Login</button>
         </div>

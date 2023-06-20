@@ -15,7 +15,7 @@ function RestaurantCard({ restaurant }) {
 
     return (
         <div className="restaurant-card">
-            <img src={logo ? logo : defaulImage} alt="Image of the cafe" className='res-img-home' />
+            <img src={logo ? logo : defaulImage} alt={`beautiful ${name}`} className='res-img-home' />
             <div>
                 <div>{`${name}`}</div>
                 <div>{t('address_text', { addr_num, addr_street })}</div>
