@@ -67,8 +67,8 @@ function Restaurant() {
                         }
                     </div>
                     <div className='res-detail-crowdedtime'>
-                        <div>Khung gio dong khach: {`${data.crowded_time}`}</div>
-                        <div>Hien tai: <span>green</span></div>
+                        <div>{t('restaurant.crowded_time')} {`${data.crowded_time}`}</div>
+                        <div>{t('restaurant.now')} </div><span className='res-detail-green-status'></span>
                     </div>
                 </div>
                 <div className="res-detail-right">
@@ -78,7 +78,7 @@ function Restaurant() {
                         <Star star={data.total_star} />
                     </div>
                     <div>
-                        <div className="res-detail-title">Menu</div>
+                        <div className="res-detail-title">{t('restaurant.menu')}</div>
                         <div className='res-detail-menu-container'>
                             {data.items && data.items.map((item, index) => {
                                 return (
@@ -91,18 +91,18 @@ function Restaurant() {
                                 )
                             })}
                         </div>
-                        <div className="res-detail-title">Danh gia</div>
+                        <div className="res-detail-title">{t('restaurant.rating')}</div>
                         {
-                            !user && <div>Ban can dang nhap de danh gia</div>
+                            !user && <div>{t('restaurant.login_request')}</div>
                         }
                         {
                             user &&
                             <form className='res-detail-form'>
-                                <UserAvatar src={user.avatar} alt="User Avatar" width="40px" height="40px" /> <span>Viet danh gia</span>
+                                <UserAvatar src={user.avatar} alt="User Avatar" width="40px" height="40px" /> <span>{t('restaurant.write_review')}</span>
                                 <input type="text" className='res-detail-input' />
                             </form>
                         }
-                        <Link to={`/restaurant/${restaurantId}/review`} style={{ color: 'black' }}>Xem danh gia tu nhung nguoi dung khac</Link>
+                        <Link to={`/restaurant/${restaurantId}/review`} style={{ color: 'black' }}>{t('restaurant.see_review')}</Link>
                     </div>
                 </div>
             </div>

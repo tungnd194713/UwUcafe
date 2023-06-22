@@ -9,8 +9,10 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import Restaurant from './pages/Restaurant';
 import Reviews from './pages/Reviews';
+import ProfileSetUp from './pages/ProfileSetUp';
 
 import SharedLayout from './components/SharedLayout'
+
 
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path='/' element={<SharedLayout />} >
           <Route index element={<Home />} />
+          <Route path='setup' element={<ProfileSetUp />}></Route>
           <Route path='restaurant/:restaurantId' element={<Restaurant />} />
           <Route path='restaurant/:restaurantId/reviews' element={<Reviews />} />
         </Route>

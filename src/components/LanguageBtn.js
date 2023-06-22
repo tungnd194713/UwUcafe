@@ -4,22 +4,11 @@ import VietFlag from '../images/VietFlag.png'
 import JapFlag from '../images/JapFlag.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
-import i18next from 'i18next'
-
-const languages = [
-    {
-        name: "jp",
-        icon: JapFlag,
-        code: "jp"
-    },
-    {
-        name: "vi",
-        icon: VietFlag,
-        code: "vi"
-    }
-]
+import { useTranslation } from 'react-i18next'
 
 function LanguageBtn() {
+
+    const { i18n } = useTranslation()
 
     const Lan = localStorage.getItem('i18nextLng') || 'vi'
 
@@ -40,11 +29,15 @@ function LanguageBtn() {
         }
     })
 
-    function changeLan(name) {
-        setCurLan(name);
-        localStorage.setItem('i18nextLng', name)
+    function changeLanVi() {
+        setCurLan('vi');
         setDropdown(false);
-        i18next.changeLanguage(name)
+        i18n.changeLanguage('vi')
+    }
+    function changeLanJp() {
+        setCurLan('jp');
+        setDropdown(false);
+        i18n.changeLanguage('jp')
     }
 
     return (
@@ -54,9 +47,8 @@ function LanguageBtn() {
             {
                 dropdown &&
                 <div className="lan-dropdown">
-                    {languages.map((lan, index) => {
-                        return (<img src={lan.icon} alt="language icon" className="lan-flag" key={index} onClick={() => changeLan(lan.name)} />)
-                    })}
+                    <img src={VietFlag} alt="language icon" className="lan-flag" onClick={() => changeLanVi()} />
+                    <img src={JapFlag} alt="language icon" className="lan-flag" onClick={() => changeLanJp()} />
                 </div>
             }
         </div>

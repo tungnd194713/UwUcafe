@@ -39,5 +39,13 @@
         },
         "have_acc_msg": "Đã có tài khoản?",
         "login_msg": "Đăng nhập ngay"
+    },
+    "restaurant": {
+        "crowded_time":"Khung giờ đông khách",
+        "now": "Hiện tại",
+        "write_review":"Viết đánh giá",
+        "menu": "Menu",
+        "rating":"Đánh giá",
+        "see_review": "Xem đánh giá từ những người dùng khác"
     }
 }
