@@ -21,7 +21,8 @@ function Home() {
     const [open, setOpen] = useState(false);
     const [showHistory, setShowHistory] = useState(false);
     const [toggleState, setToggleState] = useState(1);
-    const [current_page, setCurrentPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1);
+    const perPage = 5; // Assuming 10 items per page
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -33,13 +34,12 @@ function Home() {
 
     async function getRestaurants() {
         try {
-            const response = await apiClient.get('/restaurant', {
-                params: {
-                    per_page: 10,
-                    current_page: current_page
-                }
+            const response = await apiClient.get('/restaurant', { params: 
+                {
+                    per_page: perPage,
+                    current_page: 1,
+                } 
             });
-            console.log(response.data)
             setRestaurants(response.data);
             setTotal(total + response.data.length);
         } catch (error) {
@@ -57,8 +57,8 @@ function Home() {
         service: '',
         star_rating: '',
         is_crowded: null,
-        per_page: 10,
-        current_page: current_page
+        current_page: currentPage,
+        per_page: perPage,
     })
 
     async function SearchRes(values) {
@@ -83,6 +83,29 @@ function Home() {
         console.log(values)
         console.log('Submit form');
     }
+
+    const handlePageChange = async (newPage) => {
+        try {
+            setCurrentPage(newPage)
+            const response = await apiClient.get('/restaurant', { params: {...values, current_page: newPage} });
+            setRestaurants(response.data);
+            setTotal(response.data.length);
+        } catch (error) {
+            console.error(error);
+        }
+        //add history
+        if (values.name !== '') {
+            const h = localStorage.getItem('searchHistory') || '';
+            const H = h.split('+')
+            if (H.includes(values.name) === false) {
+                if (h.length === 0) localStorage.setItem('searchHistory', values.name)
+                else localStorage.setItem('searchHistory', `${h}+${values.name}`)
+            }
+        }
+        setOpen(false)
+        console.log(values)
+        console.log('Submit form');
+      };
 
     const onSubmit = event => {
         event.preventDefault();
@@ -283,6 +306,32 @@ function Home() {
                         restaurants.map((restaurant) => {
                             return <RestaurantCard restaurant={restaurant} key={restaurant.id} />
                         })
+                    }
+                </div>
+                <div>
+                    {
+                        currentPage === 1 && (
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li className={"page-item active"}><a class="page-link" href="#" onClick={() => handlePageChange(currentPage)}>{currentPage}</a></li>
+                                    <li className="page-item" onClick={() => handlePageChange(currentPage + 1)}><a class="page-link" href="#">{currentPage + 1}</a></li>
+                                    <li className="page-item"><a class="page-link" href="#" onClick={() => handlePageChange(currentPage + 2)}>{currentPage + 2}</a></li>
+                                </ul>
+                            </nav>
+                        )
+                    }
+                </div>
+                <div>
+                    {
+                        currentPage > 1 && (
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <li className={"page-item"}><a class="page-link" href="#" onClick={() => handlePageChange(currentPage - 1)}>{currentPage - 1}</a></li>
+                                    <li className="page-item active" onClick={() => handlePageChange(currentPage)}><a class="page-link" href="#">{currentPage}</a></li>
+                                    <li className="page-item"><a class="page-link" href="#" onClick={() => handlePageChange(currentPage + 1)}>{currentPage + 1}</a></li>
+                                </ul>
+                            </nav>
+                        )
                     }
                 </div>
 

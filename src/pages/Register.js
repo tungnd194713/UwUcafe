@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/login.css';
 import AuthApi from '../services/AuthApi'
 import { useTranslation } from 'react-i18next';
+import LanguageBtn from '../components/LanguageBtn';
+
 
 const InputField = ({ label, type, value, onChange }) => {
     return (
@@ -76,6 +78,9 @@ const Register = () => {
         <div>
             <h2 className='login-header'>{t('register.text')}</h2>
             <form onSubmit={handleSubmit} className='login-container'>
+                <div className='d-flex justify-content-end' style={{ width: '100%' }}>
+                    <LanguageBtn />
+                </div>
                 <div className='login-role-container'>
                     <RadioField label={t('register.role.store')} value="1" checked={role === '1'} onChange={handleRoleChange} />
                     <RadioField label={t('register.role.user')} value="2" checked={role === '2'} onChange={handleRoleChange} />
