@@ -6,6 +6,7 @@ const UserAvatar = ({ src, alt, width, height }) => {
     height: height,
     borderRadius: '50%',
     overflow: 'hidden',
+    marginLeft: '20px'
   };
 
   return (

@@ -2,49 +2,66 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-regular-svg-icons'
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
+import { useTranslation } from 'react-i18next'
 
-function showStar({ star }) {
+function ShowStar({ star, total_review }) {
+    const { t } = useTranslation()
 
     switch (star) {
         case 1:
             return (<>
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                <div>
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    {total_review && <span>{t('review_count', { total_review })}</span>}
+                </div>
             </>);
         case 2:
             return (<>
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                <div>
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    {total_review && <span>{t('review_count', { total_review })}</span>}
+                </div>
             </>);
         case 3:
             return (<>
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                <div>
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    {total_review && <span>{t('review_count', { total_review })}</span>}
+                </div>
             </>);
         case 4:
             return (<>
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                <div>
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStar} className='star-icon-home' />
+                    {total_review && <span>{t('review_count', { total_review })}</span>}
+                </div>
             </>);
         case 5:
             return (<>
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
-                <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                <div>
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    <FontAwesomeIcon icon={faStarSolid} style={{ color: "#fbff00", }} />
+                    {total_review && <span>{t('review_count', { total_review })}</span>}
+                </div>
             </>);
         default:
             return <></>
@@ -52,4 +69,4 @@ function showStar({ star }) {
 
 }
 
-export default showStar
+export default ShowStar

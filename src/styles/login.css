@@ -1,0 +1,99 @@
+.login-header {
+    width: 100%;
+    height: 60px;
+    background-color: var(--light_green);
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    border-bottom: solid 2px black;
+    padding-right: 20px;
+}
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.login-role-container {
+    width: 80%;
+    margin: 30px;
+}
+.login-role-item {
+    padding-left: 30px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    display: block;
+    position: relative;
+}
+.login-role-item input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+    margin-right: 10px;
+}
+.login-checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+.login-role-item input:checked ~ .login-checkmark {
+  background-color: #f32121;
+}
+.login-checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.login-role-item input:checked ~ .login-checkmark:after {
+  display: block;
+}
+.login-role-item .login-checkmark:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.login-input-item {
+    width: 100%;
+    font-size: 30px;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    margin-bottom: 20px;
+    padding-right: 5%;
+}
+.login-input-item label {
+  text-align: end;
+  padding-right: 10px;
+}
+.login-input-item input {
+  background-color: var(--mild_yellow);
+  border-radius: 25px;
+  padding-left: 20px;
+}
+.login-line {
+  width: 70%;
+  border: solid 1px black;
+  margin:10px 0 30px 0;
+}
+.login-submit {
+  font-size: 30px;
+  background-color: rgb(247, 144, 218);
+  box-shadow: 7px 7px black;
+  width: 55%;
+  border-radius: 20px;
+  margin: 30px;
+  padding: 10px;
+}

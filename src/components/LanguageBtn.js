@@ -4,15 +4,18 @@ import VietFlag from '../images/VietFlag.png'
 import JapFlag from '../images/JapFlag.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import i18next from 'i18next'
 
 const languages = [
     {
         name: "jp",
-        icon: JapFlag
+        icon: JapFlag,
+        code: "jp"
     },
     {
         name: "vi",
-        icon: VietFlag
+        icon: VietFlag,
+        code: "vi"
     }
 ]
 
@@ -41,6 +44,7 @@ function LanguageBtn() {
         setCurLan(name);
         localStorage.setItem('i18nextLng', name)
         setDropdown(false);
+        i18next.changeLanguage(name)
     }
 
     return (

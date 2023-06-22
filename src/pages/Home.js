@@ -10,7 +10,6 @@ import { faSearch, faRotateRight } from '@fortawesome/free-solid-svg-icons'
 
 const district_list = [
     'BaDinh_dis', 'HoanKiem_dis', 'TayHo_dis', 'LongBien_dis', 'CauGiay_dis'
-
 ]
 // const district_list_trans = [
 //     'バーディン地区', 'ホアンキエム地区', 'タイホー地区', 'ロンビエン地区', 'カウザイ地区', 'ドングダ地区', 'ハイバチュン地区', 'ホアングマイ地区', 'タンスアン地区', 'ハドン地区'
@@ -22,6 +21,7 @@ function Home() {
     const [open, setOpen] = useState(false);
     const [showHistory, setShowHistory] = useState(false);
     const [toggleState, setToggleState] = useState(1);
+    const [current_page, setCurrentPage] = useState(1)
 
     const toggleTab = (index) => {
         setToggleState(index);
@@ -33,9 +33,15 @@ function Home() {
 
     async function getRestaurants() {
         try {
-            const response = await apiClient.get('/restaurant');
+            const response = await apiClient.get('/restaurant', {
+                params: {
+                    per_page: 10,
+                    current_page: current_page
+                }
+            });
+            console.log(response.data)
             setRestaurants(response.data);
-            setTotal(response.data.length);
+            setTotal(total + response.data.length);
         } catch (error) {
             console.error(error);
         }
@@ -50,7 +56,9 @@ function Home() {
         district: '',
         service: '',
         star_rating: '',
-        is_crowded: null
+        is_crowded: null,
+        per_page: 10,
+        current_page: current_page
     })
 
     async function SearchRes(values) {

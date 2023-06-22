@@ -19,10 +19,25 @@
     "confirm_filter": "Xác nhận",
     "is_crowded_true": "Đông khách",
     "is_crowded_false": "Vắng khách",
-        "login": {
+    "login": {
         "role": {
             "store": "Đăng nhập với vai trò chủ cửa hàng",
             "user": "Đăng nhập với vai trò người dùng"
-        }
+        },
+        "username": "Tên đăng nhập",
+        "password": "Mật khẩu",
+        "no_acc_msg": "Bạn chưa có tài khoản",
+        "sign_up_msg":"Đăng ký ngay",
+        "forgot_pass": "Quên mật khẩu",
+        "remember_pass": "Lưu thông tin đăng nhập"
+    },
+    "register": {
+        "text": "Đăng ký",
+        "role": {
+            "store":"Đăng ký với vai trò chủ cửa hàng",
+            "user":"Đăng ký với vai trò người dùng"
+        },
+        "have_acc_msg": "Đã có tài khoản?",
+        "login_msg": "Đăng nhập ngay"
     }
 }

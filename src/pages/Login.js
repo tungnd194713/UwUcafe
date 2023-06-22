@@ -6,19 +6,21 @@ import { useTranslation } from 'react-i18next';
 
 const InputField = ({ label, type, value, onChange }) => {
   return (
-    <div>
-      <label>{label}:</label>
-      <input type={type} value={value} onChange={onChange} required />
+    <div className='login-input-item'>
+      <label className='login-input-label'>{label}:
+      </label>
+      <input type={type} value={value} onChange={onChange} required className='login-input-field' />
     </div>
   );
 };
 
 const RadioField = ({ label, value, checked, onChange }) => {
   return (
-    <div>
-      <label>
-        <input type="radio" value={value} checked={checked} onChange={onChange} />
+    <div >
+      <label className='login-role-item'>
+        <input type="radio" value={value} checked={checked} onChange={onChange} className='login-role-radio' />
         {label}
+        <span className='login-checkmark'></span>
       </label>
     </div>
   );
@@ -85,32 +87,27 @@ const Login = () => {
     }
   };
 
-  const handleForgotPassword = () => {
-    // Logic to handle forgot password
-    console.log('Forgot password clicked');
-  };
-
   return (
     <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <p>Role:</p>
+      <h2 className='login-header'>{t('login_btn')}</h2>
+      <form onSubmit={handleSubmit} className='login-container'>
+        <div className='login-role-container'>
           <RadioField label={t('login.role.store')} value="1" checked={role === '1'} onChange={handleRoleChange} />
           <RadioField label={t('login.role.user')} value="2" checked={role === '2'} onChange={handleRoleChange} />
         </div>
-        <InputField label="Username" type="username" value={username} onChange={handleUsernameChange} />
-        <InputField label="Password" type="password" value={password} onChange={handlePasswordChange} />
-        <CheckboxField label="Remember Password" checked={rememberPassword} onChange={handleRememberPasswordChange} />
-        <Link to='/forgot_pass'>Forgot password</Link>
-        <div>
-          <button type="submit">Login</button>
+        <InputField label={t("login.username")} type="username" value={username} onChange={handleUsernameChange} />
+        <div className="login-line"></div>
+        <InputField label={t("login.password")} type="password" value={password} onChange={handlePasswordChange} />
+        <div style={{ display: 'flex', width: '100%', justifyContent: "space-around", fontSize: "18px" }}>
+          <CheckboxField label={t('login.remember_pass')} checked={rememberPassword} onChange={handleRememberPasswordChange} />
+          <Link to='/forgot_pass'>{t('login.forgot_pass')}</Link>
+        </div>
+        <button type="submit" className='login-submit'>{t('login_btn')}</button>
+        <div style={{ fontSize: '20px' }}>
+          <p>{t('login.no_acc_msg')} <Link to="/register">{t('login.sign_up_msg')}</Link></p>
         </div>
       </form>
       <div>
-      </div>
-      <div>
-        <p>Don't have an account? <Link to="/signup">Sign up</Link></p>
       </div>
     </div>
   );

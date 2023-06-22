@@ -2,13 +2,16 @@ import React from 'react'
 import defaulImage from '../images/defaultavatar.jpg'
 import { useTranslation } from 'react-i18next';
 
+import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 import Star from './showStar';
 
 function RestaurantCard({ restaurant }) {
 
     const { t } = useTranslation()
 
-    const { name, address, total_star, logo } = restaurant;
+    const { name, address, total_star, logo, id } = restaurant;
 
     const addr_num = address.substring(0, address.indexOf(' '));
     const addr_street = address.substring(address.indexOf(' ') + 1);
@@ -19,8 +22,11 @@ function RestaurantCard({ restaurant }) {
             <div>
                 <div>{`${name}`}</div>
                 <div>{t('address_text', { addr_num, addr_street })}</div>
-                <Star className='show-star-home' star={total_star} />
+                <Star star={total_star} />
             </div>
+            <Link to={`/restaurant/${id}`} style={{ textAlign: 'end' }}>
+                <FontAwesomeIcon icon={faEye}></FontAwesomeIcon>
+            </Link>
         </div>
     )
 }
