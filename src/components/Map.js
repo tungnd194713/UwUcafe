@@ -1,16 +1,15 @@
 import React from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
-const Map = withGoogleMap((props) => {
-  const { markerPosition } = props;
-
+const Map = withGoogleMap(({ selectedLocation }) => {
   return (
     <GoogleMap
       defaultZoom={8}
-      defaultCenter={{ lat: 37.7749, lng: -122.4194 }}
-      onClick={props.onMapClick}
+      defaultCenter={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
     >
-      {markerPosition && <Marker position={markerPosition} />}
+      {selectedLocation && (
+        <Marker position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }} />
+      )}
     </GoogleMap>
   );
 });

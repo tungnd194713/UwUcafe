@@ -312,10 +312,10 @@ function Home() {
                     {
                         currentPage === 1 && (
                             <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li className={"page-item active"}><a class="page-link" href="#" onClick={() => handlePageChange(currentPage)}>{currentPage}</a></li>
-                                    <li className="page-item" onClick={() => handlePageChange(currentPage + 1)}><a class="page-link" href="#">{currentPage + 1}</a></li>
-                                    <li className="page-item"><a class="page-link" href="#" onClick={() => handlePageChange(currentPage + 2)}>{currentPage + 2}</a></li>
+                                <ul className="pagination">
+                                    <li className={"page-item active"}><a className="page-link" href="#" onClick={() => handlePageChange(currentPage)}>{currentPage}</a></li>
+                                    <li className="page-item" onClick={() => handlePageChange(currentPage + 1)}><a className="page-link" href="#">{currentPage + 1}</a></li>
+                                    <li className="page-item"><a className="page-link" href="#" onClick={() => handlePageChange(currentPage + 2)}>{currentPage + 2}</a></li>
                                 </ul>
                             </nav>
                         )
@@ -325,10 +325,10 @@ function Home() {
                     {
                         currentPage > 1 && (
                             <nav aria-label="Page navigation example">
-                                <ul class="pagination">
-                                    <li className={"page-item"}><a class="page-link" href="#" onClick={() => handlePageChange(currentPage - 1)}>{currentPage - 1}</a></li>
-                                    <li className="page-item active" onClick={() => handlePageChange(currentPage)}><a class="page-link" href="#">{currentPage}</a></li>
-                                    <li className="page-item"><a class="page-link" href="#" onClick={() => handlePageChange(currentPage + 1)}>{currentPage + 1}</a></li>
+                                <ul className="pagination">
+                                    <li className={"page-item"}><a className="page-link" href="#" onClick={() => handlePageChange(currentPage - 1)}>{currentPage - 1}</a></li>
+                                    <li className="page-item active" onClick={() => handlePageChange(currentPage)}><a className="page-link" href="#">{currentPage}</a></li>
+                                    <li className="page-item"><a className="page-link" href="#" onClick={() => handlePageChange(currentPage + 1)}>{currentPage + 1}</a></li>
                                 </ul>
                             </nav>
                         )
