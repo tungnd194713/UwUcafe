@@ -67,10 +67,10 @@ const Register = () => {
             // Handle successful login response
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('access_token', access_token);
-            navigate('/');
+            navigate('/profile-register');
         } catch (error) {
             // Handle login error
-            console.error('Login errorasa:', error.response);
+            console.error('Login errorasa:', error);
         }
     };
 

@@ -7,7 +7,7 @@ import LanguageBtn from './LanguageBtn';
 
 function Header() {
     const { t } = useTranslation()
-    const initializeState = () => !!JSON.parse(localStorage.getItem("user"));
+    const initializeState = () => !!JSON.parse(!localStorage.getItem("user") ? null : localStorage.getItem("user"));
 
     const [user, setUser] = useState(initializeState);
 

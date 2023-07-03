@@ -1,73 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../styles/profile.css'
-import defaultAvatar from '../images/defaultavatar.jpg'
 import apiClient from '../APIclient'
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import MapPopup  from '../components/MapPopup';
 
 const ProfilePage = () => {
-  const [previewImage, setPreviewImage] = useState(null);
   const [user, setUser] = useState({});
-  const [isAvatarChange, setAvatarChange] = useState(false);
-  const initializeState = () => !!localStorage.getItem("access_token");
-  const [token, setToken] = useState(initializeState);
-  const navigate = useNavigate();
   const defaultLat = 21.004175;
   const defaultLng = 105.843769;
 
-  useEffect(() => {
-      getData()
-  }, [])
-
-  async function getData() {
-    try {
-      const response = await apiClient.get(`/get-profile`);
-      const data = response.data.data
-      const birthday = data.birthday ? data?.birthday.split('T')[0].split('-').map(item => parseInt(item)) : []
-      setUser({
-        ...data,
-        year: birthday[0],
-        month: birthday[1],
-        day: birthday[2],
-        avatar: data.avatar ? data.avatar : null,
-      })
-      setPreviewImage(data.avatar);
-    } catch (error) {
-      console.error(error);
-    }
-  }
-
-  const handleAvatarChange = (event) => {
-    const file = event.target.files[0];
-
-    if (file) {
-      toBase64(file)
-      setPreviewImage(URL.createObjectURL(file));
-      setAvatarChange(true);
-    }
-  };
-
-  const handleBrowseClick = () => {
-    document.getElementById('selectedFile').click();
-  };
-
-  const toBase64 = (file) => {
-    let reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = function () {
-      console.log(reader.result)
-      setUser({...user, avatar: reader.result})
-    };
-    reader.onerror = function (error) {
-      console.log('Error: ', error);
-    };
-  }
-
   const handleSave = async () => {
-    if (!isAvatarChange) {
-      delete user.avatar;
-    }
     try {
       const response = await apiClient.post(`/update-profile`, {...user})
       if (response.status === 200) {
@@ -85,29 +27,10 @@ const ProfilePage = () => {
   return (
     <div>
       <div className='profile-container'>
-        <h1 className='text-center'><strong>Thông tin người dùng</strong></h1>
+        <h1 className='text-center'><strong>Nhập thông tin</strong></h1>
         <div className='break-line'></div>
-        <div className='user-container'>
-          <div className='avatar-container'>
-            <div>
-              <label>
-                <img className='avatar-preview' src={previewImage || defaultAvatar} alt="Avatar Preview" />
-                <input type="file" id="selectedFile" style={{ display: 'none' }} onChange={handleAvatarChange} />
-              </label>
-              <div className='avatar-button' onClick={handleBrowseClick}>
-                Thay đổi hình ảnh
-              </div>
-              <button className='save-button' onClick={handleSave}>Save</button>
-            </div>
-          </div>
-
+        <div className='register-container'>
           <div className='info-container'>
-          <div className="input-field">
-            <label>
-              <span>Username:</span>
-              <input disabled type="text" value={user?.username} onChange={e => setUser({...user, username: e.target.value})} placeholder='Username' />
-            </label>
-          </div>
 
           <div className="input-field">
             <label>
@@ -134,7 +57,7 @@ const ProfilePage = () => {
             <label>
               <span>Address:</span>
               <input type="text" value={user?.address} onChange={e => setUser({...user, address: e.target.value})} placeholder='Address' />
-              <MapPopup onMapClick={handleMapClick} mapLocation={{latitude: user.latitude > 1 ? user.latitude : defaultLat, longitude: user.longitude > 1 ? user.longitude : defaultLng}}/>
+              <MapPopup onMapClick={handleMapClick} mapLocation={{latitude: user.latitude || defaultLat, longitude: user.longitude || defaultLng}}/>
             </label>
           </div>
 

@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Home from './pages/Home'
 import Login from './pages/Login'
 import Register from './pages/Register'
+import ProfileRegister from './pages/RegisterProfile'
 import Restaurant from './pages/Restaurant';
 import Profile from './pages/Profile';
 import Reviews from './pages/Reviews';
@@ -30,6 +31,7 @@ function App() {
           <Route path='' element={<AuthGuard />}>
             <Route path='profile' element={<Profile />} />
           </Route>
+          <Route path='/profile-register' element={<ProfileRegister />} />
           <Route path='restaurant/:restaurantId' element={<Restaurant />} />
           <Route path='restaurant/:restaurantId/reviews' element={<Reviews />} />
         </Route>

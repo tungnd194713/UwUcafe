@@ -1,15 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 
-const Map = withGoogleMap(({ selectedLocation }) => {
+const Map = withGoogleMap(({ onMapClick, mapLocation }) => {
+  const [selectedLocation, setSelectedLocation] = useState({latitude: parseFloat(mapLocation.latitude), longitude: parseFloat(mapLocation.longitude)});
+
+  const handleMapClick = (event) => {
+    const { latLng } = event;
+    const latitude = parseFloat(latLng.lat());
+    const longitude = parseFloat(latLng.lng());
+    setSelectedLocation({ latitude, longitude });
+    onMapClick({ latitude, longitude });
+  };
+
   return (
     <GoogleMap
-      defaultZoom={8}
-      defaultCenter={{ lat: selectedLocation.lat, lng: selectedLocation.lng }}
+      defaultZoom={16}
+      defaultCenter={{ lat: parseFloat(selectedLocation.latitude), lng: parseFloat(selectedLocation.longitude) }}
+      onClick={handleMapClick}
     >
-      {selectedLocation && (
-        <Marker position={{ lat: selectedLocation.lat, lng: selectedLocation.lng }} />
-      )}
+      <Marker position={{ lat: parseFloat(selectedLocation.latitude), lng: parseFloat(selectedLocation.longitude) }} />
     </GoogleMap>
   );
 });

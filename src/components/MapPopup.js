@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Map from './Map';
 import { Button, Modal } from 'react-bootstrap';
 
-const MapPopup = () => {
+const MapPopup = ({ onMapClick, mapLocation }) => {
     const [show, setShow] = useState(false);
     const [selectedLocation, setSelectedLocation] = useState({});
   
@@ -14,10 +14,14 @@ const MapPopup = () => {
       setShow(false);
     };
   
-    const handleMapClick = (event) => {
+    const handleMapClick = (location) => {
       setSelectedLocation({
-        lat: event.latLng.lat(),
-        lng: event.latLng.lng()
+        latitude: location.latitude,
+        longitude: location.longitude,
+      });
+      onMapClick({
+        latitude: location.latitude,
+        longitude: location.longitude,
       });
     };
   
@@ -35,7 +39,8 @@ const MapPopup = () => {
             <Map
               containerElement={<div style={{ height: '400px', width: '100%' }} />}
               mapElement={<div style={{ height: '100%' }} />}
-              selectedLocation={selectedLocation}
+              mapLocation={mapLocation}
+              onMapClick={handleMapClick}
             />
           </Modal.Body>
           <Modal.Footer>

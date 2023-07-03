@@ -82,6 +82,7 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('access_token', access_token);
       navigate('/');
+      window.location.reload()
     } catch (error) {
       // Handle login error
       toast(error.response.data.message);
