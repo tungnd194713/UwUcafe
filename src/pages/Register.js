@@ -65,21 +65,12 @@ const Register = () => {
             });
             console.log(response)
             // Handle successful login response
-<<<<<<< HEAD
-            localStorage.setItem('user', JSON.stringify(response.user));
-            localStorage.setItem('access_token', response.access_token);
-            navigate('/setup');
-        } catch (error) {
-            // Handle login error
-            console.error('Register errorasa:', error.response);
-=======
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('access_token', access_token);
             navigate('/profile-register');
         } catch (error) {
             // Handle login error
             console.error('Login errorasa:', error);
->>>>>>> main
         }
     };
 

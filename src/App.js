@@ -30,14 +30,11 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path='/' element={<SharedLayout />} >
           <Route index element={<Home />} />
-<<<<<<< HEAD
           <Route path='setup' element={<ProfileSetUp />}></Route>
-=======
           <Route path='' element={<AuthGuard />}>
             <Route path='profile' element={<Profile />} />
           </Route>
           <Route path='/profile-register' element={<ProfileRegister />} />
->>>>>>> main
           <Route path='restaurant/:restaurantId' element={<Restaurant />} />
           <Route path='restaurant/:restaurantId/reviews' element={<Reviews />} />
         </Route>
