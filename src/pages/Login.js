@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import '../styles/login.css';
 import AuthApi from '../services/AuthApi'
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 
 const InputField = ({ label, type, value, onChange }) => {
   return (
@@ -81,8 +82,10 @@ const Login = () => {
       localStorage.setItem('user', JSON.stringify(user));
       localStorage.setItem('access_token', access_token);
       navigate('/');
+      window.location.reload()
     } catch (error) {
       // Handle login error
+      toast(error.response.data.message);
       console.error('Login errorasa:', error.response);
     }
   };

@@ -1,12 +1,15 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next';
+import { useState } from 'react'
 
 import UserInfo from './UserInfo'
 import LanguageBtn from './LanguageBtn';
 
 function Header() {
-    const user = localStorage.getItem('user');
     const { t } = useTranslation()
+    const initializeState = () => !!JSON.parse(!localStorage.getItem("user") ? null : localStorage.getItem("user"));
+
+    const [user, setUser] = useState(initializeState);
 
     return (
         < >
