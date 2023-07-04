@@ -47,5 +47,14 @@
         "menu": "Menu",
         "rating":"Đánh giá",
         "see_review": "Xem đánh giá từ những người dùng khác"
+    },
+    "setup" : {
+        "header_text": "Nhập thông tin",
+        "name": "Tên",
+        "email": "Email",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "phone_number": "Số điện thoại",
+        "birthday": "Ngày sinh"
     }
 }
