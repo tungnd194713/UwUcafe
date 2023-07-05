@@ -29,7 +29,7 @@ const MapPopup = ({ onMapClick, mapLocation }) => {
   
     return (
       <div>
-        <Button variant="primary" onClick={handleShow}>
+        <Button style={{color: 'black'}} variant="primary" onClick={handleShow}>
           {t('select_from_map')}
         </Button>
   

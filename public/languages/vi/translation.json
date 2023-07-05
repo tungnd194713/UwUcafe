@@ -71,7 +71,10 @@
         "gender": "Giới tính",
         "birthday": "Ngày sinh",
         "male": "Nam",
-        "female": "Nữ"
+        "female": "Nữ",
+        "day": "Ngày",
+        "month": "Tháng",
+        "year": "Năm"
     },
     "select_from_map": "Chọn từ map"
 }

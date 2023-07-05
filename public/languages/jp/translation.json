@@ -60,7 +60,10 @@
         "gender": "性",
         "birthday": "生年月日",
         "male": "男",
-        "female": "女"
+        "female": "女",
+        "day": "日",
+        "month": "月",
+        "year": "年"
     },
     "select_from_map": "地図上で選択する",
     "review": {

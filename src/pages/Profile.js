@@ -163,7 +163,7 @@ const ProfilePage = () => {
               <span>{t('profile.birthday')}</span>
               <div>
               <select className='date-input' value={user.day} onChange={e => setUser({...user, day: e.target.value})}>
-                <option value="">Day</option>
+                <option value="">{t('profile.day')}</option>
                 {Array.from({ length: 31 }, (_, i) => (
                   <option key={i + 1} value={i + 1}>
                     {i + 1}
@@ -172,7 +172,7 @@ const ProfilePage = () => {
               </select>
 
                   <select className='date-input' value={user.month} onChange={e => setUser({ ...user, month: e.target.value })}>
-                    <option value="">Month</option>
+                    <option value="">{t('profile.month')}</option>
                     {Array.from({ length: 12 }, (_, i) => (
                       <option key={i + 1} value={i + 1}>
                         {i + 1}
@@ -181,7 +181,7 @@ const ProfilePage = () => {
                   </select>
 
                   <select className='date-input' value={user.year} onChange={e => setUser({ ...user, year: e.target.value })}>
-                    <option value="">Year</option>
+                    <option value="">{t('profile.year')}</option>
                     {Array.from({ length: 100 }, (_, i) => {
                       const currentYear = new Date().getFullYear();
                       const yearValue = currentYear - i;
