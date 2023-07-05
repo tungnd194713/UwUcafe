@@ -5,5 +5,20 @@
             "store": "店の主人としてログイン",
             "user": "ユーザーとしてログイン"
         }
-    }
+    },
+    "profile": {
+        "title": "ユーザー情報",
+        "avatar_change": "写真を変更する",
+        "save_button": "保存",
+        "username": "ユーザー名",
+        "name": "名前",
+        "email": "メール",
+        "phone_number": "電話番号",
+        "address": "住所",
+        "gender": "性",
+        "birthday": "生年月日",
+        "male": "男",
+        "female": "女"
+    },
+    "select_from_map": "地図上で選択する"
 }
