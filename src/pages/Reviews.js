@@ -7,7 +7,7 @@ import ShowStar from '../components/showStar'
 import UserAvatar from '../components/UserAvatar'
 import defaultAvatar from '../images/defaultavatar.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-regular-svg-icons'
+import { faStar, faImage } from '@fortawesome/free-regular-svg-icons'
 import { faStar as faStarSolid } from '@fortawesome/free-solid-svg-icons'
 
 import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
@@ -118,7 +118,6 @@ function Reviews() {
       const handleImageChange = (e) => {
         const file = e.target.files[0];
         setSelectedImage(file);
-    
       };
     
       const handleSubmit = async (e) => {
@@ -146,6 +145,10 @@ function Reviews() {
         } catch (e) {
             toast(e);
         }
+      };
+
+      const handleBrowseClick = () => {
+        document.getElementById('selectedFile').click();
       };
 
     return (
@@ -266,12 +269,15 @@ function Reviews() {
                                         <FontAwesomeIcon size="xl" icon={hoverStar >= 4 || newStar >= 4 ? faStarSolid : faStar} onMouseEnter={() => setHoverStar(4)} onMouseLeave={() => setHoverStar(0)} onClick={() => setNewStar(4)} />
                                         <FontAwesomeIcon size="xl" icon={hoverStar >= 5 || newStar >= 5 ? faStarSolid : faStar} onMouseEnter={() => setHoverStar(5)} onMouseLeave={() => setHoverStar(0)} onClick={() => setNewStar(5)} />
                                     </div>
+                                    <FontAwesomeIcon style={{marginLeft: '25px', cursor: 'pointer'}} size="xl" icon={faImage} onClick={() => handleBrowseClick()} />
                                     <input
+                                        id="selectedFile"
                                         type="file"
-                                        id="image"
                                         onChange={handleImageChange}
                                         accept="image/*"
+                                        className='d-none'
                                     />
+                                    <div style={{marginLeft: '25px'}}>{selectedImage && selectedImage.name}</div>
                                 </div>
                                 <textarea
                                     id="reviewContent"
