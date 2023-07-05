@@ -58,5 +58,20 @@
         "gender": "Giới tính",
         "phone_number": "Số điện thoại",
         "birthday": "Ngày sinh"
-    }
+    },
+    "profile": {
+        "title": "Thông tin người dùng",
+        "avatar_change": "Thay đổi hình ảnh",
+        "save_button": "Lưu",
+        "username": "Tên đăng nhập",
+        "name": "Tên người dùng",
+        "email": "Email",
+        "phone_number": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "birthday": "Ngày sinh",
+        "male": "Nam",
+        "female": "Nữ"
+    },
+    "select_from_map": "Chọn từ map"
 }
