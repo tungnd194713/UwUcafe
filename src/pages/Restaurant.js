@@ -11,10 +11,8 @@ import UserAvatar from '../components/UserAvatar'
 
 const Address = ({ address }) => {
     const { t } = useTranslation()
-    // const addr_num = address.substring(0, address.indexOf(' '));
-    // const addr_street = address.substring(address.indexOf(' ') + 1);
-    const addr_num = '5'
-    const addr_street = 'abc'
+    const addr_num = address.substring(0, address.indexOf(' '));
+    const addr_street = address.substring(address.indexOf(' ') + 1);
     return (
         <div style={{ fontSize: '20px' }}>{t('address_text', { addr_num, addr_street })}</div>
     )
@@ -26,7 +24,6 @@ function Restaurant() {
 
     const [data, setData] = useState({});
     const [user, setUser] = useState({});
-    const [token, setToken] = useState({});
 
     async function getData() {
         try {
@@ -44,7 +41,6 @@ function Restaurant() {
         const userJson = localStorage.getItem('user');
         const userP = userJson ? JSON.parse(userJson) : null;
         setUser(userP);
-        setToken(localStorage.getItem('access_token'))
     }, [])
 
     return (
@@ -74,7 +70,7 @@ function Restaurant() {
                 <div className="res-detail-right">
                     <div className='res-detail-info'>
                         <h1 style={{ fontSize: '60px' }}>{data.name}</h1>
-                        <Address address={data.address} />
+                        {data.address && <Address address={data.address} />}
                         <Star star={data.total_star} />
                     </div>
                     <div>
@@ -98,11 +94,12 @@ function Restaurant() {
                         {
                             user &&
                             <form className='res-detail-form'>
-                                <UserAvatar src={user.avatar} alt="User Avatar" width="40px" height="40px" /> <span>{t('restaurant.write_review')}</span>
-                                <input type="text" className='res-detail-input' />
+                                <UserAvatar src={user.avatar} alt="User Avatar" width="40px" height="40px" />
+                                <input type="text" className='res-detail-input' id='res-detail-comment' />
+                                <label htmlFor="res-detail-comment">{t('restaurant.write_review')}</label>
                             </form>
                         }
-                        <Link to={`/restaurant/${restaurantId}/review`} style={{ color: 'black' }}>{t('restaurant.see_review')}</Link>
+                        <Link to={`/restaurant/${restaurantId}/reviews`} style={{ color: 'black' }}>{t('restaurant.see_review')}</Link>
                     </div>
                 </div>
             </div>

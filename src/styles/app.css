@@ -504,27 +504,10 @@ transform: rotate(45deg);
   .active > .page-link  {
     color: white !important;
   }
-
-  .setup-input-ỉtem {
-    width: 90%;
-    margin: 20px;
-    font-size: 25px;
-  }
-  .setup-input-label {
-    width: 20%;
-  }
-  .setup-input-field {
-    width: 80%;
+.logout-btn {
+    margin-right: 20px;
+    text-align: center;
+    min-width: 100px;
     background-color: var(--mild_yellow);
-    border: 1px solid black;
-    height: 20px;
     border-radius: 10px;
-    padding-left: 10px;
-  }
-  .setup-gender-container {
-    display: flex;
-    width: 100%;
-  }
-  .setup-gender-container span {
-    width: 20%;
-  }
+}

@@ -2,6 +2,8 @@
     "search_text": "Tìm kiếm",
     "option_btn": "Tùy chọn",
     "login_btn": "Đăng nhập",
+    "logout":"Đăng xuất",
+    "review_count": "Hơn {{total_review}} đánh giá",
     "total_text": "Hiển thị {{total}} kết quả",
     "address_text": "Số {{addr_num}} Đường {{addr_street}}",
     "filter": "Bộ lọc",

@@ -13,7 +13,6 @@ import ProfileRegister from './pages/RegisterProfile'
 import Restaurant from './pages/Restaurant';
 import Profile from './pages/Profile';
 import Reviews from './pages/Reviews';
-import ProfileSetUp from './pages/ProfileSetUp';
 
 // Middleware
 import AuthGuard from './pages/AuthGuard'
@@ -30,7 +29,6 @@ function App() {
         <Route path='/register' element={<Register />}></Route>
         <Route path='/' element={<SharedLayout />} >
           <Route index element={<Home />} />
-          <Route path='setup' element={<ProfileSetUp />}></Route>
           <Route path='' element={<AuthGuard />}>
             <Route path='profile' element={<Profile />} />
           </Route>
