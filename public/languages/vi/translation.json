@@ -2,6 +2,8 @@
     "search_text": "Tìm kiếm",
     "option_btn": "Tùy chọn",
     "login_btn": "Đăng nhập",
+    "logout":"Đăng xuất",
+    "review_count": "Hơn {{total_review}} đánh giá",
     "total_text": "Hiển thị {{total}} kết quả",
     "address_text": "Số {{addr_num}} Đường {{addr_street}}",
     "filter": "Bộ lọc",
@@ -39,6 +41,23 @@
         },
         "have_acc_msg": "Đã có tài khoản?",
         "login_msg": "Đăng nhập ngay"
+    },
+    "restaurant": {
+        "crowded_time":"Khung giờ đông khách",
+        "now": "Hiện tại",
+        "write_review":"Viết đánh giá",
+        "menu": "Menu",
+        "rating":"Đánh giá",
+        "see_review": "Xem đánh giá từ những người dùng khác"
+    },
+    "setup" : {
+        "header_text": "Nhập thông tin",
+        "name": "Tên",
+        "email": "Email",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "phone_number": "Số điện thoại",
+        "birthday": "Ngày sinh"
     },
     "profile": {
         "title": "Thông tin người dùng",

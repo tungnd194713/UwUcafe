@@ -5,7 +5,7 @@ import defaultAvatar from '../images/defaultavatar.jpg'
 import apiClient from '../APIclient'
 import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
-import MapPopup  from '../components/MapPopup';
+import MapPopup from '../components/MapPopup';
 
 const ProfilePage = () => {
   const [previewImage, setPreviewImage] = useState(null);
@@ -19,7 +19,7 @@ const ProfilePage = () => {
   const { t } = useTranslation();
 
   useEffect(() => {
-      getData()
+    getData()
   }, [])
 
   async function getData() {
@@ -59,7 +59,7 @@ const ProfilePage = () => {
     reader.readAsDataURL(file);
     reader.onload = function () {
       console.log(reader.result)
-      setUser({...user, avatar: reader.result})
+      setUser({ ...user, avatar: reader.result })
     };
     reader.onerror = function (error) {
       console.log('Error: ', error);
@@ -75,6 +75,7 @@ const ProfilePage = () => {
       const response = await apiClient.post(`/update-profile`, {...user, birthday})
       if (response.status === 200) {
         toast('Update success!')
+        navigate(0)
       }
     } catch (e) {
       console.log(e)
@@ -82,7 +83,7 @@ const ProfilePage = () => {
   };
 
   const handleMapClick = (location) => {
-    setUser({...user, ...location})
+    setUser({ ...user, ...location })
   }
 
   return (
@@ -170,30 +171,30 @@ const ProfilePage = () => {
                 ))}
               </select>
 
-              <select className='date-input' value={user.month} onChange={e => setUser({...user, month: e.target.value})}>
-                <option value="">Month</option>
-                {Array.from({ length: 12 }, (_, i) => (
-                  <option key={i + 1} value={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </select>
+                  <select className='date-input' value={user.month} onChange={e => setUser({ ...user, month: e.target.value })}>
+                    <option value="">Month</option>
+                    {Array.from({ length: 12 }, (_, i) => (
+                      <option key={i + 1} value={i + 1}>
+                        {i + 1}
+                      </option>
+                    ))}
+                  </select>
 
-              <select className='date-input' value={user.year} onChange={e => setUser({...user, year: e.target.value})}>
-                <option value="">Year</option>
-                {Array.from({ length: 100 }, (_, i) => {
-                  const currentYear = new Date().getFullYear();
-                  const yearValue = currentYear - i;
-                  return (
-                    <option key={yearValue} value={yearValue}>
-                      {yearValue}
-                    </option>
-                  );
-                })}
-              </select>
-              </div>
-            </label>
-          </div>
+                  <select className='date-input' value={user.year} onChange={e => setUser({ ...user, year: e.target.value })}>
+                    <option value="">Year</option>
+                    {Array.from({ length: 100 }, (_, i) => {
+                      const currentYear = new Date().getFullYear();
+                      const yearValue = currentYear - i;
+                      return (
+                        <option key={yearValue} value={yearValue}>
+                          {yearValue}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </div>
+              </label>
+            </div>
           </div>
         </div>
       </div>

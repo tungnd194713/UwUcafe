@@ -1,10 +1,52 @@
 {
-    "welcome_message": "Welcome to React and react-i18next",
-        "login": {
+    "search_text": "検索",
+    "option_btn": "オプション",
+    "login_btn": "ログイン",
+    "total_text": "{{total}} 結果を表示",
+    "address_text": "{{addr_num}} 番地 {{addr_street}}",
+    "filter": "フィルター",
+    "delete":"削除",
+    "location": "場所",
+    "rating": "評価",
+    "service": "サービス",
+    "is_crowded": "客の流れ",
+    "HBT_dis": "ハイバトゥン区",
+    "aircon": "エアコン",
+    "smoking_room": "喫煙ルーム",
+    "parking_lot": "駐車場",
+    "toilet": "トイレ",
+    "cancel": "キャンセル",
+    "confirm_filter": "確認",
+    "is_crowded_true": "混雑している",
+    "is_crowded_false": "空いている",
+    "login": {
         "role": {
-            "store": "店の主人としてログイン",
+             "store": "店の主人としてログイン",
             "user": "ユーザーとしてログイン"
-        }
+        },
+        "username": "ユーザーネーム",
+        "password": "パスワード",
+        "no_acc_msg": "アカウントがまだありません",
+        "sign_up_msg":"今すぐ登録",
+        "forgot_pass": "パスワードを忘れた",
+        "remember_pass": "ログイン情報を保存"
+    },
+    "register": {
+        "text": "登録",
+        "role": {
+            "store":"店主として登録",
+            "user":"ユーザーとして登録"
+        },
+        "have_acc_msg": "すでにアカウントをお持ちですか？",
+        "login_msg": "今すぐログイン"
+    },
+    "restaurant": {
+        "crowded_time":"混雑時間",
+        "now": "現在",
+        "write_review":"レビューを書く",
+        "menu": "メニュー",
+        "rating":"評価",
+        "see_review": "他のユーザーからのレビューを見る"
     },
     "profile": {
         "title": "ユーザー情報",

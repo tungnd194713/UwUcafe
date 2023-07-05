@@ -31,8 +31,8 @@ const RadioField = ({ label, value, checked, onChange }) => {
 const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
     const [role, setRole] = useState('1');
+
     const navigate = useNavigate();
     const { t } = useTranslation();
 
@@ -58,15 +58,15 @@ const Register = () => {
         event.preventDefault();
 
         try {
-            const { user, access_token } = await AuthApi.register({
+            const response = await AuthApi.register({
                 username,
                 password,
                 role,
             });
-
+            console.log(response)
             // Handle successful login response
-            localStorage.setItem('user', JSON.stringify(user));
-            localStorage.setItem('access_token', access_token);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            localStorage.setItem('access_token', response.access_token);
             navigate('/profile-register');
         } catch (error) {
             // Handle login error
