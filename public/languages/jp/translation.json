@@ -62,5 +62,9 @@
         "male": "男",
         "female": "女"
     },
-    "select_from_map": "地図上で選択する"
+    "select_from_map": "地図上で選択する",
+    "review": {
+        "all_filter": "All",
+        "star": "つ星"
+    }
 }
